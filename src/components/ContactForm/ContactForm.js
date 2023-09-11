@@ -1,21 +1,17 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
-import css from './ContactForm.module.css';
+
+import React from 'react';
+import { Error, StyledForm, Button, Label, Input } from './ContactForm.styled';
 
 const FormError = ({ name }) => {
   return (
-    <ErrorMessage
-      name={name}
-      render={message => <p className={css.errorMessage}>{message}</p>}
-    />
+    <ErrorMessage name={name} render={message => <Error>{message}</Error>} />
   );
 };
 
 export const ContactForm = ({ onSubmit }) => {
-  const { form, label, input, button } = css;
-
   const userSchema = object({
     name: string().required(),
     number: string().required(),
@@ -37,21 +33,19 @@ export const ContactForm = ({ onSubmit }) => {
       onSubmit={handleSubmit}
       validationSchema={userSchema}
     >
-      <Form className={form}>
-        <label className={label}>
+      <StyledForm>
+        <Label>
           Name
-          <Field className={input} type="text" name="name" />
+          <Input type="text" name="name" />
           <FormError name="name" />
-        </label>
-        <label className={label}>
+        </Label>
+        <Label>
           Number
-          <Field className={input} type="tel" name="number" />
+          <Input type="tel" name="number" />
           <FormError name="number" />
-        </label>
-        <button type="submit" className={button}>
-          Add contact
-        </button>
-      </Form>
+        </Label>
+        <Button type="submit">Add contact</Button>
+      </StyledForm>
     </Formik>
   );
 };

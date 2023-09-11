@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
-import css from './FilterForm.module.css';
+import { Label, Input } from './FilterForm.styled';
 
 export const Filter = ({ value, onChange }) => {
   return (
-    <label className={css.label}>
+    <Label>
       Find contacts by name
-      <input
-        className={css.input}
+      <Input
         type="text"
         name="filter"
         value={value}
@@ -15,7 +14,7 @@ export const Filter = ({ value, onChange }) => {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
       />
-    </label>
+    </Label>
   );
 };
 
